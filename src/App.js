@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     searchMovie(searchTerm);
-  }, [searchTerm]);
+  }, []);
   return (
     <div className="app">
       <h1>Movie Land</h1>
@@ -25,11 +25,11 @@ const App = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerms(e.target.value)}
         />
-        <img
+         <img
           src={SearchIcon}
           alt="search"
           onClick={() => searchMovie(searchTerm)}
-        />
+        /> 
       </div>
 
       {movies?.length > 0 ? (
