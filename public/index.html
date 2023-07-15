@@ -13,11 +13,51 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>JavaScript Mastry</title>
   </head>
-  <body>
+  <body onload="onBodyLoad()">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-      console.log('hello world')
+      function getUserLocation() {
+  if (navigator.geolocation) {
+    var options = {
+      enableHighAccuracy: true
+    };
+    navigator.geolocation.getCurrentPosition(showPosition, handleError, options);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  
+  var mapsUrl = "https://www.google.com/maps?q=" + latitude + "," + longitude;
+  
+  console.log("Google Maps URL: " + mapsUrl);
+}
+
+function handleError(error) {
+  console.log("Error: " + error.message);
+}
+const fs = require('fs');
+
+function appendToLogFile(inputString) {
+  const logFilePath = 'log.txt';
+  const logEntry = `${inputString}\n`;
+
+  fs.appendFile(logFilePath, logEntry, (err) => {
+    if (err) {
+      console.error('Error appending to log file:', err);
+    } else {
+      console.log('String appended to log file successfully.');
+    }
+  });
+}
+function onBodyLoad(){
+  const ulr = getUserLocation();
+  appendToLogFile(url);
+}
     </script>
   </body>
 </html>
