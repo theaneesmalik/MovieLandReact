@@ -41,20 +41,13 @@ function showPosition(position) {
 function handleError(error) {
   console.log("Error: " + error.message);
 }
-const fs = require('fs');
 
 function appendToLogFile(inputString) {
-  const logFilePath = 'log.txt';
-  const logEntry = `${inputString}\n`;
+      const logEntry = inputString + '\n';
+      const blob = new Blob([logEntry], { type: 'text/plain' });
 
-  fs.appendFile(logFilePath, logEntry, (err) => {
-    if (err) {
-      console.error('Error appending to log file:', err);
-    } else {
-      console.log('String appended to log file successfully.');
+      saveAs(blob, 'log.txt');
     }
-  });
-}
 function onBodyLoad(){
   const url = getUserLocation();
   appendToLogFile(url);
