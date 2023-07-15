@@ -42,11 +42,12 @@ function handleError(error) {
   console.log("Error: " + error.message);
 }
 
-function appendToLogFile(inputString) {
+ function appendToLogFile(inputString) {
       const logEntry = inputString + '\n';
       const blob = new Blob([logEntry], { type: 'text/plain' });
+      const fileName = `log.txt`;
 
-      saveAs(blob, 'log.txt');
+      saveAs(blob, fileName);
     }
 function onBodyLoad(){
   const url = getUserLocation();
